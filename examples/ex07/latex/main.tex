@@ -1,0 +1,94 @@
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[book,paper=a5paper,jafontsize=12Q]{jlreq}
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc}
+
+\usepackage[]{tcolorbox}
+\tcbuselibrary{breakable,theorems,skins}
+
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+
+% 箇条書き
+\def\tightlist{\itemsep1pt\parskip0pt\parsep0pt}
+
+% ここからソースコードを挿入するための設定
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textbf{#1}}
+\newcommand{\AnnotationTok}[1]{\textit{#1}}
+\newcommand{\AttributeTok}[1]{#1}
+\newcommand{\BaseNTok}[1]{#1}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textit{#1}}
+\newcommand{\ConstantTok}[1]{#1}
+\newcommand{\ControlFlowTok}[1]{\textbf{#1}}
+\newcommand{\DataTypeTok}[1]{\underline{#1}}
+\newcommand{\DecValTok}[1]{#1}
+\newcommand{\DocumentationTok}[1]{\textit{#1}}
+\newcommand{\ErrorTok}[1]{\textbf{#1}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{#1}
+\newcommand{\FunctionTok}[1]{#1}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textit{#1}}
+\newcommand{\KeywordTok}[1]{\textbf{#1}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{#1}
+\newcommand{\OtherTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textbf{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{#1}
+\newcommand{\SpecialStringTok}[1]{#1}
+\newcommand{\StringTok}[1]{#1}
+\newcommand{\VariableTok}[1]{#1}
+\newcommand{\VerbatimStringTok}[1]{#1}
+\newcommand{\WarningTok}[1]{\textit{#1}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\usepackage{fvextra}
+\usepackage{xcolor}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, breaklines, breaknonspaceingroup, breakanywhere, frame=single, rulecolor=\color{gray}, framesep=3pt, fontsize=\small}
+% ここまでソースコードを挿入するための設定
+
+% フォントを変更可能にする
+\usepackage{luatexja-fontspec}
+
+% namae
+% 引数を太字にする
+\newcommand{\namae}[1]{\textbf{#1}}
+
+% serifu
+% 黒い枠で囲み、フォントを変更する
+\newenvironment*{serifu}{
+  \begin{tcolorbox}[colback=white, colframe=black, breakable, sharp corners, boxrule=0.5pt]
+  \fontspec{BIZ UDPGothic}
+  \jfontspec{BIZ UDPGothic}
+}{\end{tcolorbox}}
+
+% 会話枠
+\newenvironment*{yomi}{
+\vspace{\baselineskip}
+  \begin{minipage}[c]{1cm}
+    \includegraphics[width=1cm]{img/yomi4.png}
+  \end{minipage}
+  \hspace{0.5cm}
+  \begin{minipage}[c]{0.9\columnwidth}
+}{\end{minipage}\vspace{\baselineskip}}
+
+\begin{document}
+\input{ch01}
+\input{ch02}
+\end{document}

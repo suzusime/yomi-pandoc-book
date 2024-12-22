@@ -1,0 +1,125 @@
+\documentclass[
+  book, % 本
+  paper=a5paper, % A5版(148mm*210mm)
+  jafontsize=12Q, % 和文フォントサイズを12級に
+  baselineskip=20.4H, % 行送りを1.7文字=20.4歯に
+  line_length=37zw, % 1行の文字数を37文字に（版面幅は37*12Q=111mm）
+  number_of_lines=35, % 1ページあたりの行数を35行に（版面高さは(35+(35-1)*0.7)*12Q=178.5mm）
+  twoside, % 両面印刷（奇数ページと偶数ページのデザインを変える）
+  openany, % 章の区切りを左右両ページで許す
+  gutter=20mm, % ノド側（綴じ側）の余白を20mmに
+  headfoot_sidemargin=-8mm, % 柱とノンブルを版面の横8mm分外側に配置
+  headfoot_verticalposition=8mm, % 柱とノンブルを版面の下8mm分外側に配置
+]{jlreq}
+
+% ページスタイルの設定
+% ノンブルを小口側下に配置
+\NewPageStyle{mainstyle}{nombre_position=bottom-fore-edge}
+\pagestyle{mainstyle}
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc}
+
+\usepackage[]{tcolorbox}
+\tcbuselibrary{breakable,theorems,skins}
+
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+
+% 箇条書き
+\def\tightlist{\itemsep1pt\parskip0pt\parsep0pt}
+
+% ここからソースコードを挿入するための設定
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textbf{#1}}
+\newcommand{\AnnotationTok}[1]{\textit{#1}}
+\newcommand{\AttributeTok}[1]{#1}
+\newcommand{\BaseNTok}[1]{#1}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textit{#1}}
+\newcommand{\ConstantTok}[1]{#1}
+\newcommand{\ControlFlowTok}[1]{\textbf{#1}}
+\newcommand{\DataTypeTok}[1]{\underline{#1}}
+\newcommand{\DecValTok}[1]{#1}
+\newcommand{\DocumentationTok}[1]{\textit{#1}}
+\newcommand{\ErrorTok}[1]{\textbf{#1}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{#1}
+\newcommand{\FunctionTok}[1]{#1}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textit{#1}}
+\newcommand{\KeywordTok}[1]{\textbf{#1}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{#1}
+\newcommand{\OtherTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textbf{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{#1}
+\newcommand{\SpecialStringTok}[1]{#1}
+\newcommand{\StringTok}[1]{#1}
+\newcommand{\VariableTok}[1]{#1}
+\newcommand{\VerbatimStringTok}[1]{#1}
+\newcommand{\WarningTok}[1]{\textit{#1}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\usepackage{fvextra}
+\usepackage{xcolor}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, breaklines, breaknonspaceingroup, breakanywhere, frame=single, rulecolor=\color{gray}, framesep=3pt, fontsize=\small}
+% ここまでソースコードを挿入するための設定
+
+% フォントを変更可能にする
+\usepackage{luatexja-fontspec}
+
+% 振り仮名を振れるようにする
+\usepackage{luatexja-ruby}
+
+% 目次に出すのを節（見出しレベル1）までにする
+\setcounter{tocdepth}{1}
+
+\begin{document}
+
+\title{運命}
+\author{幸田露伴}
+\date{}
+\maketitle
+
+\tableofcontents
+
+\input{ch01}
+
+% 改ページ
+\clearpage
+
+% 奥付ここから
+\null\vfill
+\section*{詠ちゃんと学ぶ同人誌組版の技術\\{\small Pandoc+Lua\LaTeX でMarkdownから技術同人誌を作ろう}}
+\hrule\vskip.5mm\hrule\vskip3mm
+\begin{tabular}{ll}
+令和六年 十二月三十日& 初版 第一刷 発行\\
+\end{tabular}
+\vskip1em
+\begin{tabular}{ll}
+著作・発行& 神和電子\\
+印刷& 株式会社栄光\\
+%%挿絵& ***
+\end{tabular}
+\vskip1em
+\begin{tabular}{ll}
+メールアドレス & \href{mailto:kannagidensi@gmail.com}{\nolinkurl{kannagidensi@gmail.com}}\\
+Web & \url{https://巫.jp/}\\
+\end{tabular}
+\vskip3mm\hrule\vskip3mm
+{\scriptsize 落丁・乱丁の際は在庫がある限りお取り替えいたします。上記のメールアドレスまでご連絡ください。}
+% 奥付ここまで
+\end{document}

@@ -1,0 +1,51 @@
+version: '3'
+
+vars:
+  # AsciiDocファイルの格納先
+  SRC_DIR: src
+  # LaTeXファイルの格納先
+  LATEX_SRC_DIR: latex
+  # ビルド結果の出力先
+  BUILD_DIR: build
+  # 親となるLaTeXファイルの名前
+  MAIN_LATEX_BASE_NAME: main
+  # 生成したPDFファイルの名前
+  PDF_FILE_NAME: main
+
+tasks:
+  build:
+    desc: |
+      Markdown から PDF を生成する
+    vars:
+      # ソースファイルの拡張子を除いた名前
+      SOURCE_FILE_NAMES:
+        sh: perl -le 'for (glob("./{{.SRC_DIR}}/*.md")) { s!.*/!!; s/\.md$//; print }'
+    cmds:
+      # Markdown から LaTeX への変換
+      - mkdir -p {{.BUILD_DIR}}/latex
+      - task: make-latex-from-markdown
+        for: { var: SOURCE_FILE_NAMES }
+        vars:
+          BASENAME: "{{.ITEM}}"
+      # LaTeX から PDF への変換
+      - task: make-pdf-from-latex
+  make-latex-from-markdown:
+    requires:
+      vars: [BASENAME]
+    cmds:
+      - |
+        pandoc -f markdown+east_asian_line_breaks+raw_attribute+multiline_tables -t latex \
+        --top-level-division=chapter \
+        -o {{.BUILD_DIR}}/latex/{{.BASENAME}}.tex \
+        {{.SRC_DIR}}/{{.BASENAME}}.md
+  make-pdf-from-latex:
+    cmds:
+      - mkdir -p {{.BUILD_DIR}}/pdf
+      - cp latex/{{.MAIN_LATEX_BASE_NAME}}.tex {{.BUILD_DIR}}/latex/{{.MAIN_LATEX_BASE_NAME}}.tex
+      - cd {{.BUILD_DIR}}/latex && lualatex {{.MAIN_LATEX_BASE_NAME}}.tex
+      - cp {{.BUILD_DIR}}/latex/{{.MAIN_LATEX_BASE_NAME}}.pdf {{.BUILD_DIR}}/pdf/{{.PDF_FILE_NAME}}.pdf
+  clean:
+    desc: |
+      ビルド結果を削除する
+    cmds:
+      - rm -rf {{.BUILD_DIR}}
